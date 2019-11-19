@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ .Release.Name }}-test-connection
+  labels:
+    app: {{ .Release.Name }}-test-connection
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: 
+      - {{ .Release.Name }}-nginx:{{ .Values.nginx.port }}
+  restartPolicy: Never
+

@@ -1,0 +1,6 @@
+gitea:
+  imageTag: latest
+  port: 3000
+nginx:
+  imageTag: latest
+  port: 80

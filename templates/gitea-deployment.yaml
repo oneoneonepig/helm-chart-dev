@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-gitea
+  labels:
+    app: {{ .Release.Name }}-gitea
+    chart: {{ .Chart.Version }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-gitea
+      chart: {{ .Chart.Version }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-gitea
+        chart: {{ .Chart.Version }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: gitea/gitea:{{ .Values.nginx.imageTag }}
